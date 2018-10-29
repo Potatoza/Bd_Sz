@@ -1,0 +1,42 @@
+create database Sziget
+	ON (NAME =Sziget_dat, 
+	FILENAME = 'H:\Sziget.mdf',
+	SIZE=10,
+	MAXSIZE=100,
+	FILEGROWTH=10)
+	
+	LOG ON (NAME = Sziget_Log ,
+	 FILENAME = 'H:\Sziget.ldf',
+	SIZE=10,
+	MAXSIZE=100,
+	FILEGROWTH=10)
+
+ USE SZIGET
+
+ CREATE TABLE area
+	(id INT NOT NULL PRIMARY KEY,
+	name nvarchar(40) NOT NULL,
+	)
+
+ CREATE TABLE scene(
+	id INT NOT NULL PRIMARY KEY,
+	id_area INT NOT NULL,
+	name nvarchar(40), 
+	CONSTARINT fk_scene_area FOREIGN KEY (id_area) REFERENCES area(id)
+	)
+
+CREATE TABLE ticket(
+	id INT NOT NULL PRIMARY KEY,
+	id_ticket_type INT NOT NULL,
+	id_area INT NOT NULL,
+	CONSTARINT fk_ticket_type FOREIGN KEY (id_ticket_type) REFERENCES ticket_type(id),
+	CONSTARINT fk_ticket_AREA FOREIGN KEY (id_area) REFERENCES area(id)
+	)
+
+CREATE TABLE ticket_type(
+	id INT NOT NULL PRIMARY KEY,
+	name nvarchar(40),
+	description navercher(100)	
+	)
+
+
