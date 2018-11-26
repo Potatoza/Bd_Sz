@@ -1,3 +1,10 @@
+/**показує імя і прізвище найстаршого волонтера
+shows name and surname of the oldest volunteer
+*/
+SELECT name as Name, surname as Surname, age as Age from volunteer where age=(select max(age) from volunteer);  
+  
+  
+  
   /** Покзатаи унікальні країни з таблиці волонтер
         shows distinct countries from volunteer
         */
