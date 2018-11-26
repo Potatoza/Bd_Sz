@@ -1,0 +1,14 @@
+ /**counts and shows the quantity of tickets */
+ select count(*)  as quantity from ticket;
+ /** shows description and name  of ticket type  if name of ticket like '%___D' / показує ім'я та опис типу квитка, якщо ім'я типу квитка розпочинається із будь-якого символа та містить щонайменше 4 символи та закінчується на літеру 'D' */
+ select name, description from ticket_type where name like '%___D';
+ /**shows scene name and artist name where artist is from England / показує  назву сцени та назву артиста, який є з Англії*/
+ select name as SceneName, artistname from scene inner join performers on scene.id_performer=performers.id where country='England';
+  /**показує всіх виконавців/ shows all performers*/
+ select * from performers
+/**показує та обраховує середню кількість інвентару / counts and shows average quantity of equipment*/
+SELECT AVG(quantity) AS AVG FROM equipment;
+/**shows performers' name, surname, artistname and equipment where equipment is special effects*/
+SELECT performers.pname, performers.psurname, performers.artistname, equipment.type
+	FROM performers inner join equipment on performers.id_equipment=equipment.id
+		WHERE equipment.type='special effects';
