@@ -1,0 +1,28 @@
+  /** Покзатаи унікальні країни з таблиці волонтер
+        shows distinct countries from volunteer
+        */
+SELECT DISTINCT country FROM volunteer;
+/** показати  інформацію про квитики 'GOLD'і 'BRONZE'
+shows information about gold and bronxe tickets
+  */
+SELECT * FROM ticket_type WHERE name IN('GOLD', 'BRONZE');
+
+select id FROM dayc where number_of_tickets=(select MAX(number_of_tickets) from dayc);
+//** показати виконавців і кількість відвідувачів у найбільш людний день(найбільшою кількістю відвідувачів)
+shows performers and visitors quantity on the day with the bigest visitors quantity
+*/
+SELECT performers.pname, performers.psurname, performers.artistname, dayc.number_of_tickets
+	FROM performers inner join dayc on performers.id_day=dayc.id
+		WHERE dayc.id=(Select id FROM dayc where number_of_tickets=(select MAX(number_of_tickets) from dayc));
+		
+/** показати артистів з найбільшою кількістю обладнання і  сцену на яких они виступали
+shows performers with the bigest equipment quatity and scene where they performed
+ */
+Select performers.pname, performers.psurname,performers.artistname, scene.name 
+	from scene inner join performers on scene.id_performer=performers.id
+    where performers.id_equipment = (select id from equipment where quantity = (select max(quantity) from equipment));
+    
+/**Порахувати кількість виконавців з амеhики
+counts quantity of american performers
+*/
+SELECT count(*) as american_performers from performers where country= 'USA'
